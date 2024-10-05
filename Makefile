@@ -71,7 +71,7 @@ all: CFLAGS = -Wall -Wextra -Werror
 all: LDFLAGS = -lreadline
 all: $(NAME)
 
-macos: READLINE_DIR := $(shell brew --prefix readline)
+macos: READLINE_DIR += $(shell brew --prefix readline)
 macos: CFLAGS = -Wall -Wextra -Werror -I$(READLINE_DIR)/include
 macos: LDFLAGS = -L$(READLINE_DIR)/lib -lreadline
 macos: $(MACOS)
