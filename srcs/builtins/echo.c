@@ -6,7 +6,7 @@
 /*   By: mrochedy <mrochedy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:24:55 by mrochedy          #+#    #+#             */
-/*   Updated: 2024/08/21 12:17:32 by mrochedy         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:31:30 by mrochedy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	is_n_arg(t_cmd *cmd, int *i)
 	{
 		j = 1;
 		if (cmd->argv[*i][0] != '-')
+			return (is_n_arg);
+		if (!cmd->argv[*i][1])
 			return (is_n_arg);
 		while (cmd->argv[*i][j])
 			if (cmd->argv[*i][j++] != 'n')
