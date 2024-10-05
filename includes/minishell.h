@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdaher <hdaher@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mrochedy <mrochedy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:56:20 by mrochedy          #+#    #+#             */
-/*   Updated: 2024/08/22 15:50:08 by hdaher           ###   ########.fr       */
+/*   Updated: 2024/10/05 20:34:21 by mrochedy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ extern int	g_signal_received;
 
 /* STRUCTURES */
 
-typedef enum e_token_type{
+typedef enum e_token_type
+{
 	WORD,
 	REDIRECT,
 	PIPE,
 	NONE
 }	t_token_type;
 
-typedef enum e_redir{
+typedef enum e_redir
+{
 	NO_REDIR,
 	REDIRECT_INPUT,
 	REDIRECT_OUTPUT,
@@ -49,7 +51,8 @@ typedef enum e_redir{
 	REDIRECT_OUTPUT_APPEND
 }	t_redir;
 
-typedef struct s_token {
+typedef struct s_token
+{
 	t_token_type	type;
 	char			*content;
 	int				is_in_quote;
