@@ -2,6 +2,10 @@
 
 Welcome to our implementation of **Minishell**, a core project from the **École 42** common core. This repository contains our own version of a minimalist Unix shell, developed by **Maxime Rochedy** (mrochedy) and **Hélios Daher** (hdaher). The project challenges us to recreate essential features of a shell, helping us deepen our understanding of process control, system calls, and command parsing. Our **Minishell** is compatible with both **Linux** and **macOS** systems.
 
+This project earned a score of **110/100**, thanks to a **complete mandatory** implementation and bonus features such as **wildcard handling**.
+
+<img width="198" alt="110/100 grade" src="https://github.com/user-attachments/assets/4be14bc6-0746-4bcb-9cd6-ee4f319ab093">
+
 ## About the Project
 
 **Minishell** is a custom-built Unix shell designed to mimic the behavior of major shells like **bash**, while staying minimal and focused. This project was a collaborative effort, following the principles taught at **42**, and it was crucial in enhancing our skills in C programming, process management, and inter-process communication.
