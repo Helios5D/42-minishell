@@ -1,7 +1,20 @@
 NAME = minishell
-MACOS = minishell_macos
 
 CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
+LDFLAGS = -lreadline
+
+OS = $(shell uname -s)
+ifeq ($(OS), Darwin)
+    READLINE_DIR = $(shell brew --prefix readline)
+    CFLAGS += -I$(READLINE_DIR)/include
+    LDFLAGS += -L$(READLINE_DIR)/lib
+else
+    ifneq ($(OS), Linux)
+        $(error Operating system not supported)
+    endif
+endif
 
 SRCS_DIR = srcs
 PARSING_DIR = parsing
@@ -67,14 +80,7 @@ COL4 = \033[38;2;255;86;139m
 COL5 = \033[38;2;255;54;121m
 COL6 = \033[38;2;255;0;102m
 
-all: CFLAGS = -Wall -Wextra -Werror
-all: LDFLAGS = -lreadline
 all: $(NAME)
-
-macos: READLINE_DIR += $(shell brew --prefix readline)
-macos: CFLAGS = -Wall -Wextra -Werror -I$(READLINE_DIR)/include
-macos: LDFLAGS = -L$(READLINE_DIR)/lib -lreadline
-macos: $(MACOS)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -93,28 +99,14 @@ $(NAME): $(OBJS)
 	@echo "$(COL5)██║░╚═╝░██║██║██║░╚███║██║██████╔╝██║░░██║███████╗███████╗███████╗"
 	@echo "$(COL6)╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝╚═════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚══════╝$(RESET)\n"
 
-$(MACOS): $(OBJS)
-	@echo "\n$(YELLOW)Linking objects...$(RESET)"
-	@$(CC) $(OBJS) -o $(MACOS) $(LDFLAGS)
-	@echo "$(BLUE)Progress: 100%$(RESET)"
-	@echo "$(GREEN)Compilation complete!$(RESET)\n"
-	@echo "$(COL1)███╗░░░███╗██╗███╗░░██╗██╗░██████╗██╗░░██╗███████╗██╗░░░░░██╗░░░░░"
-	@echo "$(COL2)████╗░████║██║████╗░██║██║██╔════╝██║░░██║██╔════╝██║░░░░░██║░░░░░"
-	@echo "$(COL3)██╔████╔██║██║██╔██╗██║██║╚█████╗░███████║█████╗░░██║░░░░░██║░░░░░"
-	@echo "$(COL4)██║╚██╔╝██║██║██║╚████║██║░╚═══██╗██╔══██║██╔══╝░░██║░░░░░██║░░░░░"
-	@echo "$(COL5)██║░╚═╝░██║██║██║░╚███║██║██████╔╝██║░░██║███████╗███████╗███████╗"
-	@echo "$(COL6)╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝╚═════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚══════╝$(RESET)\n"
-
 clean:
 	@rm -rf $(OBJS_DIR)
 	@echo "$(RED)Cleaned object files.$(RESET)"
 
 fclean: clean
-	@rm -f $(NAME) $(MACOS)
+	@rm -f $(NAME)
 	@echo "$(RED)Removed executable.$(RESET)"
 
 re: fclean all
 
-re_macos: fclean macos
-
-.PHONY: all clean fclean re macos re_macos
+.PHONY: all clean fclean re

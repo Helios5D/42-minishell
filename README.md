@@ -26,14 +26,24 @@ Please note that while this code is provided for **learning purposes**, you shou
 
 ## Getting Started
 
+This project is compatible on Linux and macOS.
+
+> If you are on macOS, make sure you have installed Xcode Command Line Tools.
+
 To compile and use **Minishell**, you will need to install the **Readline** library, which provides line-editing and command history capabilities, similar to other popular shells.
 
-### Linux
-
-First install Readline:
+- Linux:
 
 ```bash
 sudo apt install libreadline-dev
+```
+
+- macOS:
+
+Ensure you have **Homebrew** installed, then install Readline:
+
+```bash
+sudo brew install readline
 ```
 
 Then, you should be able to install and compile Minishell:
@@ -43,23 +53,6 @@ git clone https://github.com/Helios5D/42-minishell.git
 cd 42-minishell
 make
 ./minishell
-```
-
-### MacOS
-
-Ensure you have **Homebrew** installed, then install Readline:
-
-```bash
-sudo brew install readline
-```
-
-At this point, you should be able to install and compile minishell:
-
-```bash
-git clone https://github.com/Helios5D/42-minishell.git
-cd 42-minishell
-make macos
-./minishell_macos
 ```
 
 From here, you can start using **Minishell** like any other Unix shell. It supports command execution, piping (`|`), redirections (`>`, `<`, `>>`), heredocs (`<<`) and basic shell operations.
